@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MovieStack</string>
+    <string-array name="movies">
+        <item>La tumba de las luciernágas</item>
+        <item>Your name</item>
+        <item>Avatar</item>
+        <item>Batman: El Caballero de la Noches</item>
+    </string-array>
+</resources>
