@@ -1,5 +1,7 @@
 package com.example.moviestack
 
+import android.content.ClipDescription
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -9,16 +11,19 @@ import android.view.View
 import android.widget.*
 
 class MainActivity : AppCompatActivity() {
+    private val moviesNames = arrayListOf<MoviesNames>(
+        MoviesNames("La tumba de las luciernágas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        MoviesNames("The Batman", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        MoviesNames("Avatar", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        MoviesNames("El Padrino", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        MoviesNames("Drive a Car", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        MoviesNames("Guasón", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        MoviesNames("El viaje de Chihiro", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_MovieStack)
 
-        val moviesNames = arrayListOf<MoviesNames>(
-            MoviesNames("La tumba de las luciernágas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-            MoviesNames("The Batman", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-            MoviesNames("Avatar", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-            MoviesNames("El Padrino", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-            MoviesNames("Drive a Car", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -29,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         listView.adapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
             // do something
-            selectMovies(moviesNames[position].name.lowercase())
+            selectMovies(moviesNames[position].name, moviesNames[position].description)
             adapter.notifyDataSetChanged()
         }
         searchMovies(search, adapter)
@@ -56,9 +61,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun selectMovies(movieName: String, movieDescription: String) {
+        // open a second activity
+        val goto = Intent(this, MovieInfoActivity::class.java)
+        goto.putExtra("MOVIE_NAME", movieName)
+        goto.putExtra("MOVIE_DESCRIPTION", movieDescription)
+        startActivity(goto)
+    }
+    /*
     fun selectMovies(name:String){
         val img = findViewById<ImageView>(R.id.movieImage)
         val id = resources.getIdentifier(name,"drawable", packageName)
         img.setImageResource(id)
-    }
+    }*/
 }
