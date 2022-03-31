@@ -40,7 +40,10 @@
             android:id="@+id/movieDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description" />
+            android:text="Description"
+            android:ellipsize="end"
+            android:singleLine="true"
+            />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
