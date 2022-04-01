@@ -37,13 +37,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*
-    fun selectMovies(name:String){
-        val img = findViewById<ImageView>(R.id.movieImage)
-        val id = resources.getIdentifier(name,"drawable", packageName)
-        img.setImageResource(id)
-    }*/
-
     private fun searchMovies(keyWord:EditText, adapter: MoviesAdapter){
         val adp = adapter
         try {
@@ -56,16 +49,13 @@ class MainActivity : AppCompatActivity() {
 
                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     adp.filter.filter(s)
-                    Toast.makeText(applicationContext, ""+s, Toast.LENGTH_SHORT).show()
                 }
             })
-
         }catch(e: Exception){
             Toast.makeText(this, "Search exception: "+e, Toast.LENGTH_SHORT).show()
             Log.i("Search", "Search Exception")
         }
     }
-
 
     fun selectMovies(movieName: String, movieDescription: String) {
         // open a second activity

@@ -26,7 +26,6 @@ class MoviesAdapter(private val ctx: Context, private val layout: Int, private v
         val image = view.findViewById<ImageView>(R.id.movieImage)
         val id = ctx.resources.getIdentifier(data[position].name, "drawable", ctx.packageName)
         image.setImageResource(id)
-
         return view
     }
 
